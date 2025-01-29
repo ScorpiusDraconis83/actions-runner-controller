@@ -1,5 +1,8 @@
 # About ARC
 
+> [!WARNING]
+> This documentation covers the legacy mode of ARC (resources in the `actions.summerwind.net` namespace). If you're looking for documentation on the newer autoscaling runner scale sets, it is available in [GitHub Docs](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller). To understand why these resources are considered legacy (and the benefits of using the newer autoscaling runner scale sets), read [this discussion (#2775)](https://github.com/actions/actions-runner-controller/discussions/2775).
+
 ## Introduction
 This document provides a high-level overview of Actions Runner Controller (ARC). ARC enables running Github Actions Runners on Kubernetes (K8s) clusters.
 
@@ -154,7 +157,7 @@ kubectl set env deploy controller-manager -c manager GITHUB_ENTERPRISE_URL=<GHEC
 The project supports being deployed on the various cloud Kubernetes platforms (e.g. EKS), it does not however aim to go beyond that. No cloud specific tooling is bundled in the base runner, this is an active decision to keep the overhead of maintaining the solution manageable.
 
 **Bundled Software**<br />
-The GitHub hosted runners include a large amount of pre-installed software packages. GitHub maintains a list in README files at <https://github.com/actions/virtual-environments/tree/main/images/linux>.
+The GitHub hosted runners include a large amount of pre-installed software packages. GitHub maintains a list in README files at <https://github.com/actions/runner-images/blob/main/images/ubuntu/>.
 
 This solution maintains a few Ubuntu based runner images, these images do not contain all of the software installed on the GitHub runners. The images contain the following subset of packages from the GitHub runners:
 

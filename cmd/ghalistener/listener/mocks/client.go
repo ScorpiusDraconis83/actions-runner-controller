@@ -83,6 +83,20 @@ func (_m *Client) DeleteMessage(ctx context.Context, messageQueueUrl string, mes
 	return r0
 }
 
+// DeleteMessageSession provides a mock function with given fields: ctx, runnerScaleSetId, sessionId
+func (_m *Client) DeleteMessageSession(ctx context.Context, runnerScaleSetId int, sessionId *uuid.UUID) error {
+	ret := _m.Called(ctx, runnerScaleSetId, sessionId)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, int, *uuid.UUID) error); ok {
+		r0 = rf(ctx, runnerScaleSetId, sessionId)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetAcquirableJobs provides a mock function with given fields: ctx, runnerScaleSetId
 func (_m *Client) GetAcquirableJobs(ctx context.Context, runnerScaleSetId int) (*actions.AcquirableJobList, error) {
 	ret := _m.Called(ctx, runnerScaleSetId)
@@ -109,25 +123,25 @@ func (_m *Client) GetAcquirableJobs(ctx context.Context, runnerScaleSetId int) (
 	return r0, r1
 }
 
-// GetMessage provides a mock function with given fields: ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId
-func (_m *Client) GetMessage(ctx context.Context, messageQueueUrl string, messageQueueAccessToken string, lastMessageId int64) (*actions.RunnerScaleSetMessage, error) {
-	ret := _m.Called(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId)
+// GetMessage provides a mock function with given fields: ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId, maxCapacity
+func (_m *Client) GetMessage(ctx context.Context, messageQueueUrl string, messageQueueAccessToken string, lastMessageId int64, maxCapacity int) (*actions.RunnerScaleSetMessage, error) {
+	ret := _m.Called(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId, maxCapacity)
 
 	var r0 *actions.RunnerScaleSetMessage
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) (*actions.RunnerScaleSetMessage, error)); ok {
-		return rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId)
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, int) (*actions.RunnerScaleSetMessage, error)); ok {
+		return rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId, maxCapacity)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64) *actions.RunnerScaleSetMessage); ok {
-		r0 = rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId)
+	if rf, ok := ret.Get(0).(func(context.Context, string, string, int64, int) *actions.RunnerScaleSetMessage); ok {
+		r0 = rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId, maxCapacity)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*actions.RunnerScaleSetMessage)
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string, string, int64) error); ok {
-		r1 = rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId)
+	if rf, ok := ret.Get(1).(func(context.Context, string, string, int64, int) error); ok {
+		r1 = rf(ctx, messageQueueUrl, messageQueueAccessToken, lastMessageId, maxCapacity)
 	} else {
 		r1 = ret.Error(1)
 	}
